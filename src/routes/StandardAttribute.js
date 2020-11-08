@@ -51,7 +51,6 @@ router.post('/StandardAttributes/', (req,res,next)=>{
 
     var options = {
         host : 'bgames-apirestpostatt.herokuapp.com',
-        port : 6810,
         path: ('/attributes/'),
         method: 'POST',
         headers: {
@@ -146,7 +145,6 @@ router.put('/PlayerConfig/edit/:id', (req,res,next)=>{
         
         var options = {
             host : 'bgames-configurationservice.herokuapp.com',
-            port : 31705,
             path: ('/players/'+id),
             method: 'PUT',
             headers: {
