@@ -20,6 +20,12 @@ const fetch = require('node-fetch');
     "date_time": "2019-05-16 13:17:17"
     }
 */
+
+/*
+Input:  Json of sensor data
+Output: Void (stores the data in the db)
+Description: Calls the b-Games-ApirestPostAtt service 
+*/
 router.post('/StandardAttributes/', (req,res,next)=>{
     var post_data = req.body;
     if(!req.body.id_player || !req.body.id_player|| !req.body.nameat|| !req.body.namecategory|| !req.body.data|| !req.body.data_type|| !req.body.input_source|| !req.body.date_time){
@@ -105,23 +111,13 @@ router.post('/StandardAttributes/', (req,res,next)=>{
 
     }
 
-/*
-    common.getJsonSend(options,dataEncoded,function(err,result){
-        console.log("DAATAAA");
-        console.log(data2);
-        if(err){
-            console.log("No hay resultado");//ACA ESTA EL RESULTADO
-            res.json("Error in user config: get");
-        }
-        else{
-            console.log(result);//ACA ESTA EL RESULTADO
-            res.json(result);
-        }
-    });*/
-
 })
 
-
+/*
+Input: Id of a player (range 0 to positive int)
+Output: Void (edits a player's info)
+Description: Calls the b-Games-ConfiguratioService service to edit the info of a specific player
+*/
 router.put('/PlayerConfig/edit/:id', (req,res,next)=>{
     //var headersIN = req.body;
     const headersIN = JSON.stringify(req.body);
