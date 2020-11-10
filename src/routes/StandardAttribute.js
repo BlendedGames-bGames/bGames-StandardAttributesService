@@ -113,54 +113,7 @@ router.post('/StandardAttributes/', (req,res,next)=>{
 
 })
 
-/*
-Input: Id of a player (range 0 to positive int)
-Output: Void (edits a player's info)
-Description: Calls the b-Games-ConfiguratioService service to edit the info of a specific player
-*/
-router.put('/PlayerConfig/edit/:id', (req,res,next)=>{
-    //var headersIN = req.body;
-    const headersIN = JSON.stringify(req.body);
 
-    
-
-    const {name,pass,age} = req.body;
-    const{id}= req.params;
-    console.log("cuanto es: "+headersIN);
-    if ( !common.isNumber(Number(id)) || !common.isString(name) || !common.isString(pass) || !(common.isNumber(age))){
-        console.log('This is not a player'+  typeof(Number(id)) + common.isString(name) + common.isString(pass) + common.isNumber(age));
-        res.json("Error in user config: not user");
-    }
-    else{
-        const data2 = JSON.stringify({
-            name: name,
-            pass:pass,
-            age:age
-          });
-        console.log("cuanto es2: "+data2);
-        
-        var options = {
-            host : 'bgames-configurationservice.herokuapp.com',
-            path: ('/players/'+id),
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Content-Length': data2.length
-              }
-        };
-        common.getJsonSend(options,data2,function(err,result){
-            if(err){
-                console.log("No hay resultado");//ACA ESTA EL RESULTADO
-                res.json("Error in user config: get");
-            }
-            else{
-                console.log(result);//ACA ESTA EL RESULTADO
-                res.json(result);
-            }
-        });
-    }
-
-})
 
 module.exports = router;
 
