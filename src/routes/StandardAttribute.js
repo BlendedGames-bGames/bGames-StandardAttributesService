@@ -100,7 +100,7 @@ router.post('/StandardAttributes/', (req,res,next)=>{
                     date_time:date_time
                 })
         })
-        .then(res => res.status(200).json('Success'))
+        .then(res => res.json('Success'))
         .then(json => console.log("Response of API: "+json));
 
         const messageData = response;
