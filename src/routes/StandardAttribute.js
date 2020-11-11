@@ -76,7 +76,7 @@ router.post('/StandardAttributes/', (req,res,next)=>{
             date_time:post_data.date_time
     };
 
-    var url = "http://"+options.host + ":"+ options.port + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_POST_URL = url;
