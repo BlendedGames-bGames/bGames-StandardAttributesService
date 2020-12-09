@@ -20,6 +20,31 @@ const fetch = require('node-fetch');
     "date_time": "2019-05-16 13:17:17"
     }
 */
+/*
+Input:  Json of sensor data
+Output: Void (stores the data in the db)
+Description: Calls the b-Games-ApirestPostAtt service 
+*/
+router.post('/standard_attributes_apis', (req,res,next)=>{
+
+    
+    var post_data = req.body;
+    console.log(post_data)
+
+    var options = {
+        host : 'bgames-apirestpostatt.herokuapp.com',
+        path: ('/attributes/'),
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Content-Length': Buffer.byteLength(data2),
+        }
+    };
+    var url = "http://"+options.host + options.path;
+    console.log("URL "+url);
+    res.status(200).json({ body: req.body, })
+})
+
 
 /*
 Input:  Json of sensor data
