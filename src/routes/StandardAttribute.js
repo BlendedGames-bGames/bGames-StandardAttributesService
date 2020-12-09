@@ -36,8 +36,7 @@ router.post('/standard_attributes_apis', (req,res,next)=>{
         path: ('/attributes/'),
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
-            'Content-Length': Buffer.byteLength(data2),
+            'Content-Type': 'application/json'
         }
     };
     var url = "http://"+options.host + options.path;
