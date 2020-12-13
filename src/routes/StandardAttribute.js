@@ -197,7 +197,7 @@ async function getConversions(id_sensor_endpoint,data_changes,watch_parameters){
 
     var changedParameters = []
     var new_data = []
-    data_changes.forEach((data,index) => {
+    data_changes.forEach((parameter,index) => {
             //Si no hubo cambio en el watch_parameter no se va a buscar su conversion
             if(parameter !== 0){
                 changedParameters.push( watch_parameters[index])
