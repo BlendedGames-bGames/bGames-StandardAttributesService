@@ -225,7 +225,11 @@ async function getConversions(id_sensor_endpoint,data_changes,watch_parameters){
     }
 
     try {
-        const response = await axios.get(MEDIUM_POST_URL,dataChanges);
+        const response = await axios.get(MEDIUM_POST_URL,{
+            params: {
+                dataChanges
+            }
+        })
         const data = response.data
         //Procesamiento de los rows entregados
 
@@ -268,7 +272,11 @@ async function updatedAttributeLevels(player_attributes,new_data){
     var url = "https://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
     try {
-        const response = await axios.get(MEDIUM_GET_URL,player_attributes);
+        const response = await axios.get(MEDIUM_GET_URL,{
+            params: {
+                player_attributes
+            }
+        })
          // Ej: attributes: [18,20]
          // EJ: new_data = [9,1]
         var {attributes} = response.data
@@ -304,7 +312,11 @@ async function getAttributesIds(id_subattributes){
     var url = "https://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
     try {
-        const response = await axios.get(MEDIUM_GET_URL,id_subattributes);
+        const response = await axios.get(MEDIUM_GET_URL,{
+            params: {
+                id_subattributes
+            }
+        })
         // Ej: id_attributes: [1,1,2]
         const {id_attributes} = response.data
         return id_attributes
