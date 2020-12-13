@@ -240,7 +240,7 @@ async function getConversions(id_sensor_endpoint,data_changes,watch_parameters){
         //Procesar y result que se quiere: 
         var results = {
 
-            "id_conversions":response.data.id_conversion,
+            "id_conversions":response.data.id_conversions,
             "id_subattributes": response.data.id_subattributes,
             "operations":  response.data.operations,
             "new_data": new_data
