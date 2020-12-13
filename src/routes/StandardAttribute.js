@@ -227,7 +227,8 @@ async function getConversions(id_sensor_endpoint,data_changes,watch_parameters){
     try {
         const response = await axios.get(MEDIUM_POST_URL,{
             params: {
-                dataChanges
+                "id_sensor_endpoint": id_sensor_endpoint,
+                "watch_parameters":changedParameters         
             }
         })
         const data = response.data
