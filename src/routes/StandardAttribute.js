@@ -223,9 +223,18 @@ async function getConversions(id_sensor_endpoint,data_changes,watch_parameters){
         "id_sensor_endpoint": id_sensor_endpoint,
         "watch_parameters":changedParameters                                        
     }
+    var headers = {
+        'Content-Type': 'application/json;charset=UTF-8',
+        'Access-Control-Allow-Origin': '*'
+    };
 
     try {
-        const response = await axios.get(MEDIUM_POST_URL,dataChanges)
+        const response = await axios.get(MEDIUM_POST_URL,{ headers:headers, data: dataChanges}).then(response => {
+            console.log(response);
+        }).catch(error => {
+            console.log(error);
+            console.log('ERROR::', error.response.body);
+        });
         const data = response.data
         //Procesamiento de los rows entregados
 
