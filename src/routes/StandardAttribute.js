@@ -115,7 +115,7 @@ function postAdquiredSubattribute(adquired_subattributes){
     
     var options = {
         host : 'bgames-apirestpostatt.herokuapp.com',
-        path: ('/adquired_subattribute')       
+        path: ('/adquired_subattribute/')       
     };
     var url = "https://"+options.host + options.path;
     console.log("URL "+url);
