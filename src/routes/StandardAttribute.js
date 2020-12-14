@@ -96,6 +96,9 @@ router.post('/standard_attributes_apis', jsonParser, wrap(async(req,res,next) =>
     */
 
     var id_attributes = await getAttributesIds(id_subattributes)
+    console.log("id_attributes")
+
+    console.log(id_attributes)
 
     var new_attribute_experience = {
         "id_player":id_player,
