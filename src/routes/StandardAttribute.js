@@ -186,19 +186,20 @@ async function putNewAttributesLevels(new_attribute_experience){
     console.log('updatedAttributes 2')
     console.log(updatedAttributes)
     var dataChanges ={  
-        "id_player": new_attribute_experience.id_player,   
+        "id_player": new_attribute_experience.id_player,//[1]   
         //Ej: id_attributes = [3,4,6,7,10], distintos
-        "id_attributes": updated_attributes.id_attributes,
-        "new_data": updatedAttributes
+        "id_attributes": updated_attributes.id_attributes,//[1]
+        "new_data": updatedAttributes //[19]
     }
-    
+    console.log('last changes:')
+    console.log(dataChanges)
     var headers = {
         'Content-Type': 'application/json;charset=UTF-8',
         'Access-Control-Allow-Origin': '*'
     };
 
     try {
-        const response = axios.put(MEDIUM_PUT_URL,{ headers:headers, data: dataChanges});
+        const response = axios.put(MEDIUM_PUT_URL,dataChanges);
         console.log(response)
         
     } 
