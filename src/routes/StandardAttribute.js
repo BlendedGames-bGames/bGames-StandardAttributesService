@@ -229,12 +229,9 @@ async function getConversions(id_sensor_endpoint,data_changes,watch_parameters){
     };
 
     try {
-        const response = await axios.get(MEDIUM_POST_URL,{ headers:headers, data: dataChanges}).then(response => {
-            console.log(response);
-        }).catch(error => {
-            console.log(error);
-            console.log('ERROR::', error.response.body);
-        });
+        const response = await axios.get(MEDIUM_POST_URL,{ headers:headers, data: dataChanges})
+        console.log('233')
+        console.log(response.data)
         const data = response.data
         //Procesamiento de los rows entregados
 
