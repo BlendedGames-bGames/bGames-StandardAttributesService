@@ -183,7 +183,7 @@ async function putNewAttributesLevels(new_attribute_experience){
     }
     //Ej: [27,21]
     var updatedAttributes = await updateAttributeLevels(player_attributes,updated_attributes.new_data)
-    console.log('updatedAttributes')
+    console.log('updatedAttributes 2')
     console.log(updatedAttributes)
     var dataChanges ={  
         "id_player": new_attribute_experience.id_player,   
@@ -310,9 +310,9 @@ async function updateAttributeLevels(player_attributes,new_data){
         console.log(response.data)
          // Ej: attributes: [18,20]
          // EJ: new_data = [9,1]
-        var {attributes} = response.data
+        var attributes = response.data.attributes
         for (let i = 0; i < attributes.length; i++) {
-            attributes[i]+= new_data            
+            attributes[i]+= new_data[i]            
         }
         // => [27,21]
         return attributes
