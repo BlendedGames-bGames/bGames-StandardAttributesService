@@ -123,7 +123,7 @@ function postAdquiredSubattribute(adquired_subattributes){
     const MEDIUM_POST_URL = url;
    
     try {
-        const response = axios.post(MEDIUM_POST_URL,adquired_subattributes);
+        const response = axios.post(MEDIUM_POST_URL,{ headers:headers, data: adquired_subattributes});
         console.log(response)
         
     } 
@@ -179,7 +179,7 @@ async function putNewAttributesLevels(new_attribute_experience){
         "new_data": updatedAttributes
     }
     try {
-        const response = axios.put(MEDIUM_PUT_URL,dataChanges);
+        const response = axios.put(MEDIUM_PUT_URL,{ headers:headers, data: dataChanges});
         console.log(response)
         
     } 
@@ -277,11 +277,7 @@ async function updatedAttributeLevels(player_attributes,new_data){
     var url = "https://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
     try {
-        const response = await axios.get(MEDIUM_GET_URL,{
-            params: {
-                player_attributes
-            }
-        })
+        const response = await axios.get(MEDIUM_GET_URL,{ headers:headers, data: player_attributes})
          // Ej: attributes: [18,20]
          // EJ: new_data = [9,1]
         var {attributes} = response.data
@@ -317,11 +313,7 @@ async function getAttributesIds(id_subattributes){
     var url = "https://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
     try {
-        const response = await axios.get(MEDIUM_GET_URL,{
-            params: {
-                id_subattributes
-            }
-        })
+        const response = await axios.get(MEDIUM_GET_URL,{ headers:headers, data: id_subattributes})
         // Ej: id_attributes: [1,1,2]
         const {id_attributes} = response.data
         return id_attributes
