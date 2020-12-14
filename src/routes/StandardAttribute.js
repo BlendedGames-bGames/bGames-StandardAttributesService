@@ -301,9 +301,13 @@ async function updateAttributeLevels(player_attributes,new_data){
         "id_player": player_attributes.id_player,
         "id_attributes": player_attributes.id_attributes
     }
+    console.log('dataChanges in updateAttributeLevels')
+    console.log(dataChanges)
 
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers, data: dataChanges})
+        console.log('response')
+        console.log(response.data)
          // Ej: attributes: [18,20]
          // EJ: new_data = [9,1]
         var {attributes} = response.data
