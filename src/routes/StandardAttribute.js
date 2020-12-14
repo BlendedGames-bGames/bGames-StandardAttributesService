@@ -121,6 +121,12 @@ function postAdquiredSubattribute(adquired_subattributes){
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_POST_URL = url;
+    
+    var headers = {
+        'Content-Type': 'application/json;charset=UTF-8',
+        'Access-Control-Allow-Origin': '*'
+    };
+
    
     try {
         const response = axios.post(MEDIUM_POST_URL,{ headers:headers, data: adquired_subattributes});
@@ -178,6 +184,12 @@ async function putNewAttributesLevels(new_attribute_experience){
         "id_attributes": updated_attributes.id_attributes,
         "new_data": updatedAttributes
     }
+    
+    var headers = {
+        'Content-Type': 'application/json;charset=UTF-8',
+        'Access-Control-Allow-Origin': '*'
+    };
+
     try {
         const response = axios.put(MEDIUM_PUT_URL,{ headers:headers, data: dataChanges});
         console.log(response)
@@ -273,6 +285,12 @@ async function updatedAttributeLevels(player_attributes,new_data){
     };
     var url = "https://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
+    
+    var headers = {
+        'Content-Type': 'application/json;charset=UTF-8',
+        'Access-Control-Allow-Origin': '*'
+    };
+
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers, data: player_attributes})
          // Ej: attributes: [18,20]
@@ -309,6 +327,12 @@ async function getAttributesIds(id_subattributes){
     };
     var url = "https://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
+    
+    var headers = {
+        'Content-Type': 'application/json;charset=UTF-8',
+        'Access-Control-Allow-Origin': '*'
+    };
+
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers, data: id_subattributes})
         // Ej: id_attributes: [1,1,2]
