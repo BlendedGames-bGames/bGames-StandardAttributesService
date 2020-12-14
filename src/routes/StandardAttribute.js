@@ -183,8 +183,8 @@ async function putNewAttributesLevels(new_attribute_experience){
     }
     //Ej: [27,21]
     var updatedAttributes = await updateAttributeLevels(player_attributes,updated_attributes.new_data)
-
-
+    console.log('updatedAttributes')
+    console.log(updatedAttributes)
     var dataChanges ={  
         "id_player": new_attribute_experience.id_player,   
         //Ej: id_attributes = [3,4,6,7,10], distintos
