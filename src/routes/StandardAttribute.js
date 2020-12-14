@@ -71,8 +71,8 @@ router.post('/standard_attributes_apis', jsonParser, wrap(async(req,res,next) =>
     //new_data: Ej [2,20,4]
     var new_data = conversions_data.new_data
 
-
-
+    console.log('conversions_data')
+    console.log(conversions_data)
     //Ej [4,5,1]
     var results = conversionDataAttribute(operations,new_data)
 
