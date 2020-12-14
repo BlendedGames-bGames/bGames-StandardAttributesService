@@ -130,7 +130,7 @@ function postAdquiredSubattribute(adquired_subattributes){
 
    
     try {
-        const response = axios.post(MEDIUM_POST_URL,{ headers:headers, data: adquired_subattributes});
+        const response = axios.post(MEDIUM_POST_URL, adquired_subattributes);
         console.log(response)
         
     } 
