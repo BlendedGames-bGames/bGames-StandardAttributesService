@@ -75,7 +75,8 @@ router.post('/standard_attributes_apis', jsonParser, wrap(async(req,res,next) =>
     console.log(conversions_data)
     //Ej [4,5,1]
     var results = conversionDataAttribute(operations,new_data)
-
+    console.log('/n resultado del reemplazo')
+    console.log(results)
     var adquired_subattributes ={  
         "id_player": id_player,        
         "id_sensor_endpoint": id_sensor_endpoint,
