@@ -166,6 +166,9 @@ Description: Calls the b-Games-ApirestPostAtt service
 async function putNewAttributesLevels(new_attribute_experience){
 
     var updated_attributes = sumAttributeData(new_attribute_experience.id_attributes,new_attribute_experience.new_data)
+    console.log('updated_attributes')
+    console.log(updated_attributes)
+
     var options = {
         host : 'bgames-apirestpostatt.herokuapp.com',
         path: ('/player_attributes')       
@@ -176,10 +179,10 @@ async function putNewAttributesLevels(new_attribute_experience){
     const MEDIUM_PUT_URL = url;
     let player_attributes = {
         "id_player":new_attribute_experience.id_player, //EJ: 1
-        "id_attributes":new_attribute_experience.id_attributes// Ej: [1,4]
+        "id_attributes":updated_attributes.id_attributes// Ej: [1,4]
     }
     //Ej: [27,21]
-    var updatedAttributes = await updatedAttributeLevels(player_attributes,updated_attributes.new_data)
+    var updatedAttributes = await updateAttributeLevels(player_attributes,updated_attributes.new_data)
 
 
     var dataChanges ={  
@@ -278,7 +281,7 @@ async function getConversions(id_sensor_endpoint,data_changes,watch_parameters){
         console.error(error);
     }
 }
-async function updatedAttributeLevels(player_attributes,new_data){
+async function updateAttributeLevels(player_attributes,new_data){
    /*
    
    player_attributes = {id_player, id_attributes}
@@ -294,9 +297,13 @@ async function updatedAttributeLevels(player_attributes,new_data){
         'Content-Type': 'application/json;charset=UTF-8',
         'Access-Control-Allow-Origin': '*'
     };
+    var dataChanges = {
+        "id_player": player_attributes.id_player,
+        "id_attributes": player_attributes.id_attributes
+    }
 
     try {
-        const response = await axios.get(MEDIUM_GET_URL,{ headers:headers, data: player_attributes})
+        const response = await axios.get(MEDIUM_GET_URL,{ headers:headers, data: dataChanges})
          // Ej: attributes: [18,20]
          // EJ: new_data = [9,1]
         var {attributes} = response.data
