@@ -45,12 +45,9 @@ Output: Void (stores the data in the db)
 Description: Calls the b-Games-ApirestPostAtt service 
 */
 router.post('/standard_attributes_apis', jsonParser, wrap(async(req,res,next) => { 
-    res.status(200).json({ body: req.body, })
+    res.status(200).json({ body: req.body })
     var id_player = req.body.id_player
-    var sensor_endpoint_id_online_sensor = req.body.sensor_endpoint_id_online_sensor
     var id_sensor_endpoint = req.body.id_sensor_endpoint
-    var input_source_sensor = req.body.input_source_sensor
-    var input_source_endpoint = req.body.input_source_endpoint
     // [2,20,4,0,0]
     var data_changes = req.body.data_changes
     // Ej: ['chess_blitz,records,win', 'elo','puzzle_challenge,record','puzzle_rush','chess_rapid,record,win']
