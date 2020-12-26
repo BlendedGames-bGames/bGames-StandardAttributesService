@@ -114,8 +114,7 @@ Input:  Json of sensor data
 Output: Void (stores the data in the db)
 Description: Calls the b-Games-ApirestPostAtt service 
 */
-function postAdquiredSubattribute(adquired_subattributes){
-
+async function postAdquiredSubattribute(adquired_subattributes){
     
     var options = {
         host : 'bgames-apirestpostatt.herokuapp.com',
@@ -131,9 +130,37 @@ function postAdquiredSubattribute(adquired_subattributes){
         'Access-Control-Allow-Origin': '*'
     };
 
-   
+    var options2 = {
+        host : 'bgames-apirestget.herokuapp.com',
+        path: ('/subattribute_conversion_sensor_endpoint/'+adquired_subattributes.id_sensor_endpoint)     
+    };
+    var url2 = "https://"+options2.host + options2.path;
+    console.log("URL "+url2);
+    // construct the URL to post to a publication
+    const MEDIUM_POST_URL2 = url2;
+
+    var modifiedAdquired = {
+        "id_conversions":adquired_subattributes.id_conversions,
+        "id_attributes":adquired_subattributes.id_attributes,
+        "id_subattributes":adquired_subattributes.id_subattributes
+    }
+    var subatt_conv_endpoint_relation;
+
     try {
-        const response = axios.post(MEDIUM_POST_URL, adquired_subattributes);
+        subatt_conv_endpoint_relation = await axios.get(MEDIUM_POST_URL2,{ headers:headers, data: modifiedAdquired})
+
+    } catch (error) {
+        console.log(error)
+        
+    }
+    const adquired_subattribute_final = {
+        "id_player":adquired_subattributes.id_players,
+        "id_subattributes_conversion_sensor_endpoint":subatt_conv_endpoint_relation,
+        "new_data":adquired_subattributes.new_data
+    }
+    try {
+       
+        const response = axios.post(MEDIUM_POST_URL, adquired_subattribute_final);
         console.log(response)
         
     } 
