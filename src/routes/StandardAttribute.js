@@ -382,7 +382,9 @@ async function getAttributesIds(id_subattributes){
     try {
         const response = await axios.get(MEDIUM_GET_URL,{ headers:headers, data: dataChanges})
         // Ej: id_attributes: [1,1,2]
-        const {id_attributes} = response.data
+        var id_attributes = response.data.id_attributes
+        console.log(`estos son los atributos`)
+        console.log(id_attributes)
         return id_attributes
         
     } 
