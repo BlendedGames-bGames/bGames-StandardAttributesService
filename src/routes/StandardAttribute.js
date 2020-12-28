@@ -142,7 +142,7 @@ async function postAdquiredSubattribute(adquired_subattributes){
         "id_subattributes":adquired_subattributes.id_subattributes
     }
     console.log("Im going to send this")
-    console.log(modifiedAdquired)
+    console.log(JSON.stringify(modifiedAdquired))
     var subatt_conv_endpoint_relation;
 
     try {
@@ -160,7 +160,7 @@ async function postAdquiredSubattribute(adquired_subattributes){
         "new_data":adquired_subattributes.new_data
     }
     console.log("Im going to post this")
-    console.log(adquired_subattribute_final)
+    console.log(JSON.stringify(adquired_subattribute_final))
     try {
        
         const response = axios.post(MEDIUM_POST_URL, adquired_subattribute_final);
