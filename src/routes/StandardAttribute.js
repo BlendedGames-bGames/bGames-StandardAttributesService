@@ -141,10 +141,14 @@ async function postAdquiredSubattribute(adquired_subattributes){
         "id_attributes":adquired_subattributes.id_attributes,
         "id_subattributes":adquired_subattributes.id_subattributes
     }
+    console.log("Im going to send this")
+    console.log(modifiedAdquired)
     var subatt_conv_endpoint_relation;
 
     try {
         subatt_conv_endpoint_relation = await axios.get(MEDIUM_POST_URL2,{ headers:headers, data: modifiedAdquired})
+        console.log("aqui va")
+        console.log(subatt_conv_endpoint_relation)
 
     } catch (error) {
         console.log(error)
@@ -155,6 +159,8 @@ async function postAdquiredSubattribute(adquired_subattributes){
         "id_subattributes_conversion_sensor_endpoint":subatt_conv_endpoint_relation,
         "new_data":adquired_subattributes.new_data
     }
+    console.log("Im going to post this")
+    console.log(adquired_subattribute_final)
     try {
        
         const response = axios.post(MEDIUM_POST_URL, adquired_subattribute_final);
