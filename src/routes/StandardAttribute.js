@@ -36,8 +36,6 @@ Input:
         "id_player": getJob.id_player,   
         "sensor_endpoint_id_online_sensor": getJob.sensor_endpoint_id_online_sensor,
         "id_sensor_endpoint": getJob.id_sensor_endpoint,
-        "input_source_sensor": getJob.input_source_sensor,
-        "input_source_endpoint": getJob.input_source_endpoint,
         "watch_parameters":getJob.watch_parameters,                                             
         "data_changes": arrayChanges
     }
@@ -271,7 +269,7 @@ async function getConversions(id_sensor_endpoint,data_changes,watch_parameters){
     
     var dataChanges ={  
         "id_sensor_endpoint": id_sensor_endpoint,
-        "watch_parameters":changedParameters                                        
+        "parameters_watched":changedParameters                                        
     }
     var headers = {
         'Content-Type': 'application/json;charset=UTF-8',
