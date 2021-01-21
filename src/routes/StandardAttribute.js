@@ -117,7 +117,7 @@ Description: Calls the b-Games-ApirestPostAtt service
 async function postAdquiredSubattribute(adquired_subattributes){
     
     var options = {
-        host : 'bgames-apirestpostatt.herokuapp.com',
+        host : '164.90.156.141:3002',
         path: ('/adquired_subattribute/')       
     };
     var url = "https://"+options.host + options.path;
@@ -131,7 +131,7 @@ async function postAdquiredSubattribute(adquired_subattributes){
     };
 
     var options2 = {
-        host : 'bgames-apirestget.herokuapp.com',
+        host : '164.90.156.141:3001',
         path: ('/subattribute_conversion_sensor_endpoint/'+adquired_subattributes.id_sensor_endpoint)     
     };
     var url2 = "https://"+options2.host + options2.path;
@@ -203,7 +203,7 @@ async function putNewAttributesLevels(new_attribute_experience){
     console.log(updated_attributes)
 
     var options = {
-        host : 'bgames-apirestpostatt.herokuapp.com',
+        host : '164.90.156.141:3002',
         path: ('/player_attributes')       
     };
     var url = "https://"+options.host + options.path;
@@ -264,7 +264,7 @@ async function getConversions(id_sensor_endpoint,data_changes,watch_parameters){
     console.log(new_data);
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/conversions')       
     };
     var url = "https://"+options.host + options.path;
@@ -321,7 +321,7 @@ async function updateAttributeLevels(player_attributes,new_data){
    player_attributes = {id_player, id_attributes}
    */
     var options = {
-        host : 'bgames-apirestget.herokuapp.com',
+        host : '164.90.156.141:3001',
         path: ('/player_attributes')       
     };
     var url = "https://"+options.host + options.path;
@@ -371,7 +371,7 @@ Description: Calls the b-Games-ApirestPostAtt service
 async function getAttributesIds(id_subattributes){
    
     var options = {
-        host : 'bgames-apirestget.herokuapp.com',
+        host : '164.90.156.141:3001',
         path: ('/attributes_by_subattributes')       
     };
     var url = "https://"+options.host + options.path;
@@ -489,7 +489,7 @@ router.post('/StandardAttributes/', (req,res,next)=>{
         console.log(data2);
 
         var options = {
-            host : 'bgames-apirestpostatt.herokuapp.com',
+            host : '164.90.156.141:3002',
             path: ('/attributes/'),
             method: 'POST',
             headers: {
