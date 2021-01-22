@@ -1,10 +1,7 @@
 const express = require('express');
-const router = express.Router();
+const standard_attributes = express.Router();
+import { testEnvironmentVariable } from '../settings.js';
 
-var http = require('http');
-const qs = require('querystring');
-
-var common = require('./extras');
 const fetch = require('node-fetch');
 
 const wrap = fn => (...args) => fn(...args).catch(args[2])
@@ -18,10 +15,8 @@ var jsonParser = bodyParser.json()
 const math = require('mathjs')
 
 
-router.get("/", (req,res) =>{
-    var variable = req.body
-    res.status(200).json(variable)
-
+standard_attributes.get("/", (req,res) =>{
+    res.status(200).json({ message: testEnvironmentVariable})
 });
 // PARA ESTE MICROSERVICIO SE NECESITA INGRESAR LOS DATOS DE LA SIGUIENTE MANERA:
 /* Ejemplo de Json del Body para el POST
@@ -47,7 +42,7 @@ Input:
 Output: Void (stores the data in the db)
 Description: Calls the b-Games-ApirestPostAtt service 
 */
-router.post('/standard_attributes_apis', jsonParser, wrap(async(req,res,next) => { 
+standard_attributes.post('/standard_attributes_apis', jsonParser, wrap(async(req,res,next) => { 
     res.status(200).json({ body: req.body })
     var id_player = req.body.id_player
     var id_sensor_endpoint = req.body.id_sensor_endpoint
@@ -457,7 +452,7 @@ Input:  Json of sensor data
 Output: Void (stores the data in the db)
 Description: Calls the b-Games-ApirestPostAtt service 
 */
-router.post('/StandardAttributes/', (req,res,next)=>{
+standard_attributes.post('/StandardAttributes/', (req,res,next)=>{
 
     try {
         var post_data = req.body;
@@ -552,5 +547,5 @@ router.post('/StandardAttributes/', (req,res,next)=>{
 
 
 
-module.exports = router;
+export default standard_attributes;
 
