@@ -115,7 +115,7 @@ async function postAdquiredSubattribute(adquired_subattributes){
         host : '164.90.156.141:3002',
         path: ('/adquired_subattribute/')       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_POST_URL = url;
@@ -201,7 +201,7 @@ async function putNewAttributesLevels(new_attribute_experience){
         host : '164.90.156.141:3002',
         path: ('/player_attributes')       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -262,7 +262,7 @@ async function getConversions(id_sensor_endpoint,data_changes,watch_parameters){
         host : '164.90.156.141:3007',
         path: ('/conversions')       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_POST_URL = url;
@@ -319,7 +319,7 @@ async function updateAttributeLevels(player_attributes,new_data){
         host : '164.90.156.141:3001',
         path: ('/player_attributes')       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -369,7 +369,7 @@ async function getAttributesIds(id_subattributes){
         host : '164.90.156.141:3001',
         path: ('/attributes_by_subattributes')       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
