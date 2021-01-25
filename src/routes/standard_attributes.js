@@ -199,7 +199,7 @@ async function putNewAttributesLevels(new_attribute_experience){
 
     var options = {
         host : '164.90.156.141:3002',
-        path: ('/player_attributes')       
+        path: ('/player_attributes_rt')       
     };
     var url = "http://"+options.host + options.path;
     console.log("URL "+url);
