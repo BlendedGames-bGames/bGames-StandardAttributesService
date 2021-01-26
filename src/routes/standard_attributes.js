@@ -1,10 +1,7 @@
 const express = require('express');
-const router = express.Router();
+const standard_attributes = express.Router();
+import { testEnvironmentVariable } from '../settings.js';
 
-var http = require('http');
-const qs = require('querystring');
-
-var common = require('./extras');
 const fetch = require('node-fetch');
 
 const wrap = fn => (...args) => fn(...args).catch(args[2])
@@ -18,10 +15,8 @@ var jsonParser = bodyParser.json()
 const math = require('mathjs')
 
 
-router.get("/", (req,res) =>{
-    var variable = req.body
-    res.status(200).json(variable)
-
+standard_attributes.get("/", (req,res) =>{
+    res.status(200).json({ message: testEnvironmentVariable})
 });
 // PARA ESTE MICROSERVICIO SE NECESITA INGRESAR LOS DATOS DE LA SIGUIENTE MANERA:
 /* Ejemplo de Json del Body para el POST
@@ -47,7 +42,7 @@ Input:
 Output: Void (stores the data in the db)
 Description: Calls the b-Games-ApirestPostAtt service 
 */
-router.post('/standard_attributes_apis', jsonParser, wrap(async(req,res,next) => { 
+standard_attributes.post('/standard_attributes_apis', jsonParser, wrap(async(req,res,next) => { 
     res.status(200).json({ body: req.body })
     var id_player = req.body.id_player
     var id_sensor_endpoint = req.body.id_sensor_endpoint
@@ -117,10 +112,10 @@ Description: Calls the b-Games-ApirestPostAtt service
 async function postAdquiredSubattribute(adquired_subattributes){
     
     var options = {
-        host : 'bgames-apirestpostatt.herokuapp.com',
+        host : '164.90.156.141:3002',
         path: ('/adquired_subattribute/')       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_POST_URL = url;
@@ -131,7 +126,7 @@ async function postAdquiredSubattribute(adquired_subattributes){
     };
 
     var options2 = {
-        host : 'bgames-apirestget.herokuapp.com',
+        host : '164.90.156.141:3001',
         path: ('/subattribute_conversion_sensor_endpoint/'+adquired_subattributes.id_sensor_endpoint)     
     };
     var url2 = "https://"+options2.host + options2.path;
@@ -203,10 +198,10 @@ async function putNewAttributesLevels(new_attribute_experience){
     console.log(updated_attributes)
 
     var options = {
-        host : 'bgames-apirestpostatt.herokuapp.com',
-        path: ('/player_attributes')       
+        host : '164.90.156.141:3002',
+        path: ('/player_attributes_rt')       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_PUT_URL = url;
@@ -264,10 +259,10 @@ async function getConversions(id_sensor_endpoint,data_changes,watch_parameters){
     console.log(new_data);
 
     var options = {
-        host : 'bgames-sensormanagement.herokuapp.com',
+        host : '164.90.156.141:3007',
         path: ('/conversions')       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_POST_URL = url;
@@ -321,10 +316,10 @@ async function updateAttributeLevels(player_attributes,new_data){
    player_attributes = {id_player, id_attributes}
    */
     var options = {
-        host : 'bgames-apirestget.herokuapp.com',
+        host : '164.90.156.141:3001',
         path: ('/player_attributes')       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -371,10 +366,10 @@ Description: Calls the b-Games-ApirestPostAtt service
 async function getAttributesIds(id_subattributes){
    
     var options = {
-        host : 'bgames-apirestget.herokuapp.com',
+        host : '164.90.156.141:3001',
         path: ('/attributes_by_subattributes')       
     };
-    var url = "https://"+options.host + options.path;
+    var url = "http://"+options.host + options.path;
     const MEDIUM_GET_URL = url;
     
     var headers = {
@@ -457,7 +452,7 @@ Input:  Json of sensor data
 Output: Void (stores the data in the db)
 Description: Calls the b-Games-ApirestPostAtt service 
 */
-router.post('/StandardAttributes/', (req,res,next)=>{
+standard_attributes.post('/StandardAttributes/', (req,res,next)=>{
 
     try {
         var post_data = req.body;
@@ -489,7 +484,7 @@ router.post('/StandardAttributes/', (req,res,next)=>{
         console.log(data2);
 
         var options = {
-            host : 'bgames-apirestpostatt.herokuapp.com',
+            host : '164.90.156.141:3002',
             path: ('/attributes/'),
             method: 'POST',
             headers: {
@@ -552,5 +547,5 @@ router.post('/StandardAttributes/', (req,res,next)=>{
 
 
 
-module.exports = router;
+export default standard_attributes;
 

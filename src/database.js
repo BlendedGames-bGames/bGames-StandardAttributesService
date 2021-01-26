@@ -1,20 +1,12 @@
 const mysql = require('mysql');
-const mysqlConnection = mysql.createConnection({
+var mysqlConnection  = mysql.createPool({
+    connectionLimit : 100,
     host:'db4free.net',
     user:'grybyus',
     password:'interaction1',
     database: 'testbg',
     multipleStatements:true
-})
-
-
-mysqlConnection.connect(function(err){
-    if(!!err){
-        console.log(err);
-        return;
-    } else{
-        console.log('Db is connectedddd');
-    }
 });
+
 
 module.exports = mysqlConnection;
