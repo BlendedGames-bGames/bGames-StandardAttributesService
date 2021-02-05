@@ -113,7 +113,7 @@ async function postAdquiredSubattribute(adquired_subattributes){
     
     var options = {
         host : '164.90.156.141:3002',
-        path: ('/adquired_subattribute/')       
+        path: ('/adquired_subattribute_rt')       
     };
     var url = "http://"+options.host + options.path;
     console.log("URL "+url);
@@ -155,6 +155,7 @@ async function postAdquiredSubattribute(adquired_subattributes){
     const adquired_subattribute_final = {
         "id_player":adquired_subattributes.id_player,
         "id_subattributes_conversion_sensor_endpoint":subatt_conv_endpoint_relation,
+        "id_subattributes":adquired_subattributes.id_subattributes,
         "new_data":adquired_subattributes.new_data
     }
     console.log("Im going to post this")
