@@ -24,7 +24,7 @@ const normalizePort = val => {
 /**
  * Get port from environment and store in Express.
  */
-const port = normalizePort(process.env.PORT || '3009');
+const port = normalizePort(process.env.PORT || '3008');
 app.set('port', port);
 
 /**

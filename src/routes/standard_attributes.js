@@ -1,6 +1,7 @@
 const express = require('express');
 const standard_attributes = express.Router();
 import { testEnvironmentVariable } from '../settings.js';
+import {baseURL, postPort, getPort, sensorPort} from '../urls'
 
 const fetch = require('node-fetch');
 
@@ -112,7 +113,7 @@ Description: Calls the b-Games-ApirestPostAtt service
 async function postAdquiredSubattribute(adquired_subattributes){
     
     var options = {
-        host : '164.90.156.141:3002',
+        host : baseURL+postPort,
         path: ('/adquired_subattribute_rt')       
     };
     var url = "http://"+options.host + options.path;
@@ -126,7 +127,7 @@ async function postAdquiredSubattribute(adquired_subattributes){
     };
 
     var options2 = {
-        host : '164.90.156.141:3001',
+        host : baseURL+getPort,
         path: ('/subattribute_conversion_sensor_endpoint/'+adquired_subattributes.id_sensor_endpoint)     
     };
     var url2 = "https://"+options2.host + options2.path;
@@ -199,7 +200,7 @@ async function putNewAttributesLevels(new_attribute_experience){
     console.log(updated_attributes)
 
     var options = {
-        host : '164.90.156.141:3002',
+        host : baseURL+postPort,
         path: ('/player_attributes_rt')       
     };
     var url = "http://"+options.host + options.path;
@@ -260,7 +261,7 @@ async function getConversions(id_sensor_endpoint,data_changes,watch_parameters){
     console.log(new_data);
 
     var options = {
-        host : '164.90.156.141:3007',
+        host : baseURL+sensorPort,
         path: ('/conversions')       
     };
     var url = "http://"+options.host + options.path;
@@ -317,7 +318,7 @@ async function updateAttributeLevels(player_attributes,new_data){
    player_attributes = {id_player, id_attributes}
    */
     var options = {
-        host : '164.90.156.141:3001',
+        host : baseURL+getPort,
         path: ('/player_attributes')       
     };
     var url = "http://"+options.host + options.path;
@@ -367,7 +368,7 @@ Description: Calls the b-Games-ApirestPostAtt service
 async function getAttributesIds(id_subattributes){
    
     var options = {
-        host : '164.90.156.141:3001',
+        host : baseURL+getPort,
         path: ('/attributes_by_subattributes')       
     };
     var url = "http://"+options.host + options.path;
@@ -485,7 +486,7 @@ standard_attributes.post('/StandardAttributes/', (req,res,next)=>{
         console.log(data2);
 
         var options = {
-            host : '164.90.156.141:3002',
+            host : baseURL+postPort,
             path: ('/attributes/'),
             method: 'POST',
             headers: {
