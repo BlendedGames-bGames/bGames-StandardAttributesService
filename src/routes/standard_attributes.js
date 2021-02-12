@@ -256,19 +256,35 @@ async function getConversions(id_sensor_endpoint,data_changes,watch_parameters){
             //Si no hubo cambio en el watch_parameter no se va a buscar su conversion
             if(parameter !== 0){
                 let proper_watch_parameters = []
-                for (const parameter of watch_parameters[index]) {
-                    if(Number.isInteger(parameter)){
-                        proper_watch_parameters.push(parameter.toString())
+                if(watch_parameters[index].length === 1){
+                        if(Number.isInteger(watch_parameters[index][0])){
+                            proper_watch_parameters.push(watch_parameters[index][0].toString())
+                        }
+                        else if(isString(watch_parameters[index][0])){
+                            proper_watch_parameters.push(watch_parameters[index][0])
+                        }
+                        else{
+                            proper_watch_parameters.push('true')
+                        }
                     }
-                    else if(isString(parameter)){
-                        proper_watch_parameters.push(parameter)
-                    }
-                    else{
-                        proper_watch_parameters.push('true')
+                
+                else{
+                    for (const parameter of watch_parameters[index]) {
+                        if(Number.isInteger(parameter)){
+                            proper_watch_parameters.push(parameter.toString())
+                        }
+                        else if(isString(parameter)){
+                            proper_watch_parameters.push(parameter)
+                        }
+                        else{
+                            proper_watch_parameters.push('true')
+                        }
                     }
                 }
+                
                 changedParameters.push(proper_watch_parameters)
                 new_data.push( data_changes[index])
+              
 
             }
     });
