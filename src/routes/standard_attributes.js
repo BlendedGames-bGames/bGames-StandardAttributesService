@@ -51,8 +51,10 @@ standard_attributes.post('/standard_attributes_apis', jsonParser, wrap(async(req
     var data_changes = req.body.data_changes
     // Ej: [['chess_blitz','records',win'], ['elo'],['puzzle_challenge','record'],['puzzle_rush'],['chess_rapid','record','win']]
     var watch_parameters = req.body.watch_parameters
-
-    
+    console.log(id_player)
+    console.log(id_sensor_endpoint)
+    console.log(data_changes)
+    console.log(watch_parameters)
     var conversions_data = await getConversions(id_sensor_endpoint,data_changes,watch_parameters)
     
     //ids: Ej [2,5,8]
