@@ -49,7 +49,7 @@ standard_attributes.post('/standard_attributes_apis', jsonParser, wrap(async(req
     var id_sensor_endpoint = req.body.id_sensor_endpoint
     // [2,20,4,0,0]
     var data_changes = req.body.data_changes
-    // Ej: ['chess_blitz,records,win', 'elo','puzzle_challenge,record','puzzle_rush','chess_rapid,record,win']
+    // Ej: [['chess_blitz','records',win'], ['elo'],['puzzle_challenge','record'],['puzzle_rush'],['chess_rapid','record','win']]
     var watch_parameters = req.body.watch_parameters
 
     
@@ -243,6 +243,9 @@ Input:  Json of sensor data
 Output: Void (stores the data in the db)
 Description: Calls the b-Games-ApirestPostAtt service 
 */
+function isString(x) {
+    return Object.prototype.toString.call(x) === "[object String]"
+}
 async function getConversions(id_sensor_endpoint,data_changes,watch_parameters){
 
     var changedParameters = []
@@ -250,7 +253,19 @@ async function getConversions(id_sensor_endpoint,data_changes,watch_parameters){
     data_changes.forEach((parameter,index) => {
             //Si no hubo cambio en el watch_parameter no se va a buscar su conversion
             if(parameter !== 0){
-                changedParameters.push( watch_parameters[index])
+                let proper_watch_parameters = []
+                for (const parameter of watch_parameters[index]) {
+                    if(Number.isInteger(parameter)){
+                        proper_watch_parameters.push(parameter.toString())
+                    }
+                    else if(isString(parameter)){
+                        proper_watch_parameters.push(parameter)
+                    }
+                    else{
+                        proper_watch_parameters.push('true')
+                    }
+                }
+                changedParameters.push(proper_watch_parameters)
                 new_data.push( data_changes[index])
 
             }
@@ -268,18 +283,8 @@ async function getConversions(id_sensor_endpoint,data_changes,watch_parameters){
     console.log("URL "+url);
     // construct the URL to post to a publication
     const MEDIUM_POST_URL = url;
-    
-    var dataChanges ={  
-        "id_sensor_endpoint": id_sensor_endpoint,
-        "parameters_watched":changedParameters                                        
-    }
-    var headers = {
-        'Content-Type': 'application/json;charset=UTF-8',
-        'Access-Control-Allow-Origin': '*'
-    };
-
     try {
-        const response = await axios.get(MEDIUM_POST_URL,{ headers:headers, data: dataChanges})
+        const response = await axios.post(MEDIUM_POST_URL,{ id_sensor_endpoint:id_sensor_endpoint, parameters_watched: changedParameters})
         console.log('233')
         console.log(response.data)
         const data = response.data
