@@ -132,7 +132,7 @@ async function postAdquiredSubattribute(adquired_subattributes){
         host : getHost,
         path: ('/subattribute_conversion_sensor_endpoint/'+adquired_subattributes.id_sensor_endpoint)     
     };
-    var url2 = "https://"+options2.host + options2.path;
+    var url2 = "http://"+options2.host + options2.path;
     console.log("URL "+url2);
     // construct the URL to post to a publication
     const MEDIUM_POST_URL2 = url2;
