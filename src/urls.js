@@ -1,8 +1,6 @@
-const baseURL = '144.126.216.255:'
-const sensorPort = '3007'
-const getPort = '3001' 
-const postPort = '3002' 
-const userPort = '3010'
-const standardPort = '3008'
+const postHost = 'bgames-APIRestPOSTService:3002'
+const getHost = 'bgames-APIRestGETService:3001'
+const sensorHost = 'bgames-SensorManagementService:3007'
 
-export {baseURL,sensorPort,getPort,postPort,userPort, standardPort}
+
+export {postHost,getHost,sensorHost}
