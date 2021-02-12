@@ -144,7 +144,7 @@ async function postAdquiredSubattribute(adquired_subattributes){
     var subatt_conv_endpoint_relation;
 
     try {
-        const response = await axios.get(MEDIUM_POST_URL2,{ headers:headers, data: modifiedAdquired})
+        const response = await axios.post(MEDIUM_POST_URL2,modifiedAdquired)
         subatt_conv_endpoint_relation = response.data.id_subattributes_conversion_sensor_endpoint
         console.log("aqui va")
         console.log(subatt_conv_endpoint_relation)
@@ -341,7 +341,7 @@ async function updateAttributeLevels(player_attributes,new_data){
     console.log(dataChanges)
 
     try {
-        const response = await axios.get(MEDIUM_GET_URL,{ headers:headers, data: dataChanges})
+        const response = await axios.post(MEDIUM_GET_URL,dataChanges)
         console.log('response')
         console.log(response.data)
          // Ej: attributes: [18,20]
@@ -391,7 +391,7 @@ async function getAttributesIds(id_subattributes){
     }
 
     try {
-        const response = await axios.get(MEDIUM_GET_URL,{ headers:headers, data: dataChanges})
+        const response = await axios.post(MEDIUM_GET_URL,dataChanges)
         // Ej: id_attributes: [1,1,2]
         var id_attributes = response.data.id_attributes
         console.log(`estos son los atributos`)
