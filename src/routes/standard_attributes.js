@@ -157,6 +157,7 @@ async function postAdquiredSubattribute(adquired_subattributes){
     }
     const adquired_subattribute_final = {
         "id_player":adquired_subattributes.id_player,
+        "id_sensor_endpoint":adquired_subattributes.id_sensor_endpoint,
         "id_subattributes_conversion_sensor_endpoint":subatt_conv_endpoint_relation,
         "id_subattributes":adquired_subattributes.id_subattributes,
         "new_data":adquired_subattributes.new_data
