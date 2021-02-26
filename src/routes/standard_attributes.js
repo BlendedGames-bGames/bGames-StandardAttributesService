@@ -453,10 +453,16 @@ function sumAttributeData(id_attributes,new_data){
     var id_aux = 1
     var index = 0
     console.log('esto es lo que me entro de datos: ',new_data )
+    console.log('Estos son los atributos: ',id_attributes )
+
     const distinct_ids = [...new Set(id_attributes)] // [1,1,1,2,3,3] => [1,2,3], distinct values (only primitive types)
     console.log('Este es el arreglo distinto de datos: ',distinct_ids )
+    
+    console.log('el largo de los resultados:', id_attributes.length)
 
     var almost_results = new Array(id_attributes.length).fill(0);
+    console.log('Este es el arreglo de almost_results: ', almost_results)
+
     for (let i = 0; i < id_attributes.length; i++) {
         if(id_aux !== id_attributes[i]){
             index++
