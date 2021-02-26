@@ -452,7 +452,10 @@ function conversionDataAttribute(operations,data_changes){
 function sumAttributeData(id_attributes,new_data){
     var id_aux = 1
     var index = 0
+    console.log('esto es lo que me entro de datos: ',new_data )
     const distinct_ids = [...new Set(id_attributes)] // [1,1,1,2,3,3] => [1,2,3], distinct values (only primitive types)
+    console.log('Este es el arreglo distinto de datos: ',distinct_ids )
+
     var almost_results = new Array(id_attributes.length).fill(0);
     for (let i = 0; i < id_attributes.length; i++) {
         if(id_aux !== id_attributes[i]){
@@ -463,7 +466,10 @@ function sumAttributeData(id_attributes,new_data){
         
     }
 
+    console.log('este es el almost results: ',almost_results)
     let result = almost_results.filter(data => data !== 0)
+    console.log('Este es el resultado final ',result )
+
     let result_object = {
         "id_attributes": distinct_ids,
         "new_data":result
