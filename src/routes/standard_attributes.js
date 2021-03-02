@@ -44,7 +44,6 @@ Output: Void (stores the data in the db)
 Description: Calls the b-Games-ApirestPostAtt service 
 */
 standard_attributes.post('/standard_attributes_apis', jsonParser, wrap(async(req,res,next) => { 
-    res.status(200).json({ body: req.body })
     var id_player = req.body.id_player
     var id_sensor_endpoint = req.body.id_sensor_endpoint
     // [2,20,4,0,0]
@@ -106,6 +105,7 @@ standard_attributes.post('/standard_attributes_apis', jsonParser, wrap(async(req
 
 
     putNewAttributesLevels(new_attribute_experience)
+    res.status(200).json({ body: req.body })
 }))
 /*
 Input:  Json of sensor data
