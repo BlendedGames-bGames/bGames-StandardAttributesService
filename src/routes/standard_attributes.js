@@ -253,6 +253,10 @@ async function getConversions(id_sensor_endpoint,data_changes,watch_parameters){
 
     var changedParameters = []
     var new_data = []
+    console.log('256')
+    console.log(id_sensor_endpoint)
+    console.log(data_changes)
+    console.log(typeof(data_changes))
     data_changes.forEach((parameter,index) => {
             //Si no hubo cambio en el watch_parameter no se va a buscar su conversion
             if(parameter !== 0){
