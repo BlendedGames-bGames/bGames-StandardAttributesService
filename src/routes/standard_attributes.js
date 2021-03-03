@@ -54,6 +54,10 @@ standard_attributes.post('/standard_attributes_apis', jsonParser, wrap(async(req
     console.log(id_sensor_endpoint)
     console.log(data_changes)
     console.log(watch_parameters)
+    console.log(typeof(id_player))
+    console.log(typeof id_sensor_endpoint)
+    console.log(typeof data_changes)
+    console.log(typeof watch_parameters)
     var conversions_data = await getConversions(id_sensor_endpoint,data_changes,watch_parameters)
     
     //ids: Ej [2,5,8]
