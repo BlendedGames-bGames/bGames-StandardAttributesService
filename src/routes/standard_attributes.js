@@ -444,7 +444,7 @@ function conversionDataAttribute(operations,data_changes){
         code = node.compile()        // returns {evaluate: function (scope) {...}}
         eval_data = {}
 
-        if(data.isArray){
+        if(data.isArray()){
             for (let index = 0; index < data.length; index++) {
                 const element = data[index];
                 eval_data[abc[index]] = element
