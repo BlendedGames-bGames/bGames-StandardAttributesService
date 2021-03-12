@@ -14,7 +14,7 @@ var jsonParser = bodyParser.json()
 
 
 const math = require('mathjs')
-
+const abc = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 
 standard_attributes.get("/", (req,res) =>{
     res.status(200).json({ message: testEnvironmentVariable})
@@ -435,14 +435,27 @@ async function getAttributesIds(id_subattributes){
 function conversionDataAttribute(operations,data_changes){
     // operations Ej: ['x+2','sqrt(x+5)','x/4']
     // data_changes Ej: [2,20,4]
-    var operation,data,node,code;
+    var operation,data,node,code, eval_data, single_result;
     var results = []
     for (let i = 0; i < operations.length; i++) {
         operation = operations[i];
         data = data_changes[i];
         node = math.parse(operation)   // returns the root Node of an expression tree
         code = node.compile()        // returns {evaluate: function (scope) {...}}
-        results.push(code.evaluate({x: data})) // returns result
+        eval_data = {}
+
+        if(data.isArray){
+            for (let index = 0; index < data.length; index++) {
+                const element = data[index];
+                eval_data[abc[index]] = element
+            }
+        }
+        else{
+            eval_data['a'] = data
+        }
+        single_result = code.evaluate(eval_data)
+
+        results.push(single_result) // returns result
     }
     //Ej [4,5,1]
     return results
