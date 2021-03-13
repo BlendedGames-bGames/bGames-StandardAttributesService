@@ -471,7 +471,10 @@ function conversionDataAttribute(operations,data_changes){
     "new_data": [9,1]
  */
 function sumAttributeData(id_attributes,new_data){
+
+    let original_length = new_data.length
    
+    //new_data e id_attributes poseen el mismo largo
     console.log('esto es lo que me entro de datos: ',new_data )
     console.log('Estos son los atributos: ',id_attributes )
 
@@ -497,6 +500,11 @@ function sumAttributeData(id_attributes,new_data){
 
     console.log('este es el almost results: ',almost_results)
     let result = almost_results.filter(data => data !== 0)
+
+    if(result.length === 0){
+        //No hubo ningun cambio... (puede pasar con datos externos obtenidos desde dispositivos en ciertos casos)
+        result = new Array(original_length).fill(0);
+    }
     console.log('Este es el resultado final ',result )
 
     let result_object = {
