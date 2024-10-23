@@ -43,7 +43,7 @@ Input:
 Output: Void (stores the data in the db)
 Description: Calls the b-Games-ApirestPostAtt service 
 */
-standard_attributes.post('/standard_attributes_apis', jsonParser, wrap(async(req,res,next) => { 
+standard_attributes.post('/standard_attributes_apis', jsonParser, wrap(async(req,res,next) => {
     var id_player = req.body.id_player
     var id_sensor_endpoint = req.body.id_sensor_endpoint
     // [2,20,4,0,0]
@@ -314,7 +314,7 @@ async function getConversions(id_sensor_endpoint,data_changes,watch_parameters){
         const response = await axios.post(MEDIUM_POST_URL,{ id_sensor_endpoint:id_sensor_endpoint, parameters_watched: changedParameters})
         console.log('233')
         console.log(response.data)
-        const data = response.data
+        console.log("esto es el op:", response.data.operations)
         //Procesamiento de los rows entregados
 
         /*
@@ -435,6 +435,7 @@ async function getAttributesIds(id_subattributes){
 function conversionDataAttribute(operations,data_changes){
     // operations Ej: ['x+2','sqrt(x+5)','x/4']
     // data_changes Ej: [2,20,4]
+    console.log("op:",operations,"data_changes:",data_changes)
     var operation,data,node,code, eval_data, single_result;
     var results = []
     for (let i = 0; i < operations.length; i++) {
@@ -451,9 +452,11 @@ function conversionDataAttribute(operations,data_changes){
             }
         }
         else{
-            eval_data['a'] = data
+            eval_data['x'] = data
         }
+        console.log("que sale del eval_data:",eval_data)
         single_result = code.evaluate(eval_data)
+        console.log("que es el single_result?", single_result)
 
         results.push(single_result) // returns result
     }
